@@ -25,25 +25,58 @@ class GameScene: SKScene
         name = "GAME"
         
         // add ocean to the scene
-        ocean = Ocean() // allocate memory
-        ocean?.position = CGPoint(x: 0, y: 773)
-        addChild(ocean!) // add the ocean to the scene
+        if (UIDevice.current.orientation.isPortrait) {
+            ocean = Ocean() // allocate memory
+            ocean?.position = CGPoint(x: 0, y: 773)
+            addChild(ocean!)
+        }
+        else{
+            ocean = Ocean() // allocate memory
+            ocean?.zRotation = 67.5
+            ocean?.position = CGPoint(x: 733, y: 0)
+            addChild(ocean!)
+        }
         
         // add island to the scene
-        island = Island()
-        addChild(island!)
+        if (UIDevice.current.orientation.isPortrait) {
+            island = Island()
+            addChild(island!)
+        }
+        else{
+            island = Island()
+            addChild(island!)
+        }
         
         // add plane to the scene
-        plane = Plane()
-        plane?.position = CGPoint(x: 0, y: -495)
-        addChild(plane!)
+        if (UIDevice.current.orientation.isPortrait) {
+            plane = Plane()
+            plane?.position = CGPoint(x: 0, y: -495)
+            addChild(plane!)
+        }
+        else{
+            plane = Plane()
+            plane?.zRotation = 67.5
+            plane?.position = CGPoint(x: -285, y: 0)
+            addChild(plane!)
+        }
         
-        // add 3 clouds to the scene
-        for index in 0...2
-        {
-            let cloud: Cloud = Cloud()
-            clouds.append(cloud)
-            addChild(clouds[index])
+        // add 3 clouds to the scene for portrait mode
+        if ( UIDevice.current.orientation.isPortrait) {
+            for index in 0...2
+            {
+                let cloud: Cloud = Cloud()
+                clouds.append(cloud)
+                addChild(clouds[index])
+            }
+        }
+        // add 2 clouds to the scene for landscape mode
+        else{
+            for index in 0...1
+            {
+                let cloud: Cloud = Cloud()
+                clouds.append(cloud)
+                addChild(clouds[index])
+            }
         }
         
         // Sounds
@@ -72,18 +105,32 @@ class GameScene: SKScene
     
     func touchDown(atPoint pos : CGPoint)
     {
-        plane?.TouchMove(newPos: CGPoint(x: pos.x, y: -495))
+        if (UIDevice.current.orientation.isPortrait) {
+            plane?.TouchMove(newPos: CGPoint(x: pos.x, y: -495))
+        }
+        else{
+            plane?.TouchMove(newPos: CGPoint(x: -285, y: pos.y))
+        }
     }
     
     func touchMoved(toPoint pos : CGPoint)
     {
-        plane?.TouchMove(newPos: CGPoint(x: pos.x, y: -495))
+        if (UIDevice.current.orientation.isPortrait) {
+            plane?.TouchMove(newPos: CGPoint(x: pos.x, y: -495))
+        }
+        else{
+            plane?.TouchMove(newPos: CGPoint(x: -285, y: pos.y))
+        }
     }
     
     func touchUp(atPoint pos : CGPoint)
     {
-        plane?.TouchMove(newPos: CGPoint(x: pos.x, y: -495))
-        
+        if (UIDevice.current.orientation.isPortrait) {
+            plane?.TouchMove(newPos: CGPoint(x: pos.x, y: -495))
+        }
+        else{
+            plane?.TouchMove(newPos: CGPoint(x: -285, y: pos.y))
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)

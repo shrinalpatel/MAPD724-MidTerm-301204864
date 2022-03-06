@@ -7,7 +7,12 @@ class Island : GameObject
     // constructor / initializer
     init()
     {
-        super.init(imageString: "island", initialScale: 2.0)
+        if (UIDevice.current.orientation.isPortrait) {
+            super.init(imageString: "island", initialScale: 2.0)
+        }
+        else{
+            super.init(imageString: "island", initialScale: 1.5)
+        }
         Start()
     }
     
@@ -18,18 +23,34 @@ class Island : GameObject
     // LifeCycle Functions
     override func CheckBounds()
     {
-        if(position.y <= -730)
-        {
-            Reset()
+        if (UIDevice.current.orientation.isPortrait) {
+            if(position.y <= -730)
+            {
+                Reset()
+            }
+        }
+        else{
+            if(position.x <= -730)
+            {
+                Reset()
+            }
         }
     }
     
     override func Reset()
     {
-        position.y = 730
-        // get a pseudo random number -313 to 313
-        let randomX:Int = (randomSource?.nextInt(upperBound: 616))! - 313
-        position.x = CGFloat(randomX)
+        if (UIDevice.current.orientation.isPortrait) {
+            position.y = 730
+            // get a pseudo random number -313 to 313
+            let randomX:Int = (randomSource?.nextInt(upperBound: 616))! - 313
+            position.x = CGFloat(randomX)
+        }
+        else{
+            position.x = 730
+            // get a pseudo random number -313 to 313
+            let randomY:Int = (randomSource?.nextInt(upperBound: 616))! - 313
+            position.y = CGFloat(randomY)
+        }
         isCollding = false
     }
     
@@ -39,6 +60,7 @@ class Island : GameObject
         Reset()
         zPosition = 1
         verticalSpeed = 5.0
+        horizontalSpeed = 5.0
     }
     
     override func Update()
@@ -49,6 +71,11 @@ class Island : GameObject
     
     func Move()
     {
-        position.y -= verticalSpeed!
+        if (UIDevice.current.orientation.isPortrait) {
+            position.y -= verticalSpeed!
+        }
+        else{
+            position.x -= horizontalSpeed!
+        }
     }
 }

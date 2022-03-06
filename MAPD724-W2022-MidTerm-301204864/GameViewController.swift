@@ -1,9 +1,11 @@
-//
-//  GameViewController.swift
-//  MAPD724-W2022-ICE1
-//
-//  Created by Tom Tsiliopoulos on 2022-01-12.
-//
+/*
+GameViewController.swift
+MAPD724-W2022-MidTerm-301204864
+ 
+Author: Shrinal Patel (301204864)
+Date: 2022-03-06
+App Description: A mail pilot game app using Swift and SpriteKit which works in landscape mode
+*/
 
 import UIKit
 import SpriteKit
@@ -15,12 +17,16 @@ class GameViewController: UIViewController, GameManager
     // Button Outlets
     @IBOutlet weak var StartButton: UIButton!
     @IBOutlet weak var EndButton: UIButton!
+    @IBOutlet weak var StartButton2: UIButton!
+    @IBOutlet weak var EndButton2: UIButton!
     
     // Label Outlets
     @IBOutlet weak var ScoreLabel: UILabel!
     @IBOutlet weak var LivesLabel: UILabel!
     @IBOutlet weak var StartLabel: UILabel!
     @IBOutlet weak var EndLabel: UILabel!
+    @IBOutlet weak var StartLabel2: UILabel!
+    @IBOutlet weak var EndLabel2: UILabel!
     
     var currentScene: SKScene?
     
@@ -34,6 +40,8 @@ class GameViewController: UIViewController, GameManager
         ScoreLabel.isHidden = true
         EndLabel.isHidden = true
         EndButton.isHidden = true
+        EndLabel2.isHidden = true
+        EndButton2.isHidden = true
         
         CollisionManager.gameViewController = self
         
@@ -95,6 +103,8 @@ class GameViewController: UIViewController, GameManager
     {
         StartButton.isHidden = false
         StartLabel.isHidden = false
+        StartButton2.isHidden = false
+        StartLabel2.isHidden = false
         ScoreLabel.isHidden = true
         LivesLabel.isHidden = true
     }
@@ -103,6 +113,8 @@ class GameViewController: UIViewController, GameManager
     {
         EndButton.isHidden = false
         EndLabel.isHidden = false
+        EndButton2.isHidden = false
+        EndLabel2.isHidden = false
         ScoreLabel.isHidden = true
         LivesLabel.isHidden = true
         SetScene(sceneName: "EndScene")
@@ -113,6 +125,23 @@ class GameViewController: UIViewController, GameManager
     {
         StartButton.isHidden = true
         StartLabel.isHidden = true
+        StartButton2.isHidden = true
+        StartLabel2.isHidden = true
+        ScoreLabel.isHidden = false
+        LivesLabel.isHidden = false
+        ScoreManager.Score = 0
+        ScoreManager.Lives = 5
+        updateLivesLabel()
+        updateScoreLabel()
+        SetScene(sceneName: "GameScene")
+    }
+    
+    @IBAction func StartButton2_Pressed(_ sender: UIButton)
+    {
+        StartButton.isHidden = true
+        StartLabel.isHidden = true
+        StartButton2.isHidden = true
+        StartLabel2.isHidden = true
         ScoreLabel.isHidden = false
         LivesLabel.isHidden = false
         ScoreManager.Score = 0
@@ -126,6 +155,8 @@ class GameViewController: UIViewController, GameManager
     {
         EndButton.isHidden = true
         EndLabel.isHidden = true
+        EndButton2.isHidden = true
+        EndLabel2.isHidden = true
         ScoreLabel.isHidden = false
         LivesLabel.isHidden = false
         ScoreManager.Score = 0
@@ -133,6 +164,20 @@ class GameViewController: UIViewController, GameManager
         updateLivesLabel()
         updateScoreLabel()
         SetScene(sceneName: "GameScene")
-        
+    }
+    
+    @IBAction func EndButton2_Pressed(_ sender: UIButton)
+    {
+        EndButton.isHidden = true
+        EndLabel.isHidden = true
+        EndButton2.isHidden = true
+        EndLabel2.isHidden = true
+        ScoreLabel.isHidden = false
+        LivesLabel.isHidden = false
+        ScoreManager.Score = 0
+        ScoreManager.Lives = 5
+        updateLivesLabel()
+        updateScoreLabel()
+        SetScene(sceneName: "GameScene")
     }
 }

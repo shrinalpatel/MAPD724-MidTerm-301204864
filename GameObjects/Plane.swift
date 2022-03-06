@@ -6,7 +6,12 @@ class Plane : GameObject
     // initializer
     init()
     {
-        super.init(imageString: "plane", initialScale: 2.0)
+        if (UIDevice.current.orientation.isPortrait) {
+            super.init(imageString: "plane", initialScale: 2.0)
+        }
+        else{
+            super.init(imageString: "plane", initialScale: 1.5)
+        }
         Start()
     }
     
@@ -18,16 +23,31 @@ class Plane : GameObject
     
     override func CheckBounds()
     {
-        // constrain on the left boundary
-        if(position.x <= -310)
-        {
-            position.x = -310
+        if (UIDevice.current.orientation.isPortrait) {
+            // constraint on the left boundary
+            if(position.x <= -310)
+            {
+                position.x = -310
+            }
+            
+            // constraint on the right boundary
+            if(position.x >= 310)
+            {
+                position.x = 310
+            }
         }
-        
-        // constrain on the right boundary
-        if(position.x >= 310)
-        {
-            position.x = 310
+        else{
+            // constraint on the top boundary
+            if(position.y >= 310)
+            {
+                position.y = 310
+            }
+            
+            // constraint on the botttom boundary
+            if(position.y <= -310)
+            {
+                position.y = -310
+            }
         }
     }
     

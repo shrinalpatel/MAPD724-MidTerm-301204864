@@ -14,9 +14,17 @@ class EndScene: SKScene
         name = "END"
         
         // add ocean to the scene
-        ocean = Ocean() // allocate memory
-        ocean?.position = CGPoint(x: 0, y: 773)
-        addChild(ocean!) // add the ocean to the scene
+        if (UIDevice.current.orientation.isPortrait) {
+            ocean = Ocean() // allocate memory
+            ocean?.position = CGPoint(x: 0, y: 773)
+            addChild(ocean!)
+        }
+        else{
+            ocean = Ocean() // allocate memory
+            ocean?.zRotation = 67.5
+            ocean?.position = CGPoint(x: 733, y: 0)
+            addChild(ocean!)
+        }
     }
     
     func touchDown(atPoint pos : CGPoint)

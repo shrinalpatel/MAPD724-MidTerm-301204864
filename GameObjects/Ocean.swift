@@ -18,15 +18,28 @@ class Ocean : GameObject
     // LifeCycle Functions
     override func CheckBounds()
     {
-        if(position.y <= -773)
-        {
-            Reset()
+        if (UIDevice.current.orientation.isPortrait) {
+            if(position.y <= -773)
+            {
+                Reset()
+            }
+        }
+        else{
+            if(position.x <= -773)
+            {
+                Reset()
+            }
         }
     }
     
     override func Reset()
     {
-        position.y = 773
+        if (UIDevice.current.orientation.isPortrait) {
+            position.y = 773
+        }
+        else{
+            position.x = 773
+        }
     }
     
     // initialization
@@ -34,6 +47,7 @@ class Ocean : GameObject
     {
         zPosition = 0
         verticalSpeed = 5.0
+        horizontalSpeed = 5.0
     }
     
     override func Update()
@@ -44,6 +58,11 @@ class Ocean : GameObject
     
     func Move()
     {
-        position.y -= verticalSpeed!
+        if (UIDevice.current.orientation.isPortrait) {
+            position.y -= verticalSpeed!
+        }
+        else{
+            position.x -= horizontalSpeed!
+        }
     }
 }

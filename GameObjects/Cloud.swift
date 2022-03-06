@@ -7,7 +7,12 @@ class Cloud : GameObject
     // constructor / initializer
     init()
     {
-        super.init(imageString: "cloud", initialScale: 1.0)
+        if (UIDevice.current.orientation.isPortrait) {
+            super.init(imageString: "cloud", initialScale: 1.0)
+        }
+        else{
+            super.init(imageString: "cloud", initialScale: 0.7)
+        }
         Start()
     }
     
@@ -18,28 +23,54 @@ class Cloud : GameObject
     // LifeCycle Functions
     override func CheckBounds()
     {
-        if(position.y <= -756)
-        {
-            Reset()
+        if (UIDevice.current.orientation.isPortrait) {
+            if(position.y <= -756)
+            {
+                Reset()
+            }
+        }
+        else{
+            if(position.x <= -756)
+            {
+                Reset()
+            }
         }
     }
     
     override func Reset()
     {
-        // randomize vertical speed
-        verticalSpeed = CGFloat((randomSource?.nextUniform())! * 5.0) + 5.0
-        
-        // randomize horizontal drift
-        horizontalSpeed = CGFloat((randomSource?.nextUniform())! * -4.0) + 2.0
-        
-        
-        // get a pseudo random number -262 to 262
-        let randomX:Int = (randomSource?.nextInt(upperBound: 524))! - 262
-        position.x = CGFloat(randomX)
-        
-        // get a pseudo random number 756 to 776
-        let randomY:Int = (randomSource?.nextInt(upperBound: 20))! + 756
-        position.y = CGFloat(randomY)
+        if (UIDevice.current.orientation.isPortrait) {
+            // randomize vertical speed
+            verticalSpeed = CGFloat((randomSource?.nextUniform())! * 5.0) + 5.0
+            
+            // randomize horizontal drift
+            horizontalSpeed = CGFloat((randomSource?.nextUniform())! * -4.0) + 2.0
+            
+            
+            // get a pseudo random number -262 to 262
+            let randomX:Int = (randomSource?.nextInt(upperBound: 524))! - 262
+            position.x = CGFloat(randomX)
+            
+            // get a pseudo random number 756 to 776
+            let randomY:Int = (randomSource?.nextInt(upperBound: 20))! + 756
+            position.y = CGFloat(randomY)
+        }
+        else{
+            // randomize horizontal speed
+            horizontalSpeed = CGFloat((randomSource?.nextUniform())! * 5.0) + 5.0
+            
+            // randomize vertical drift
+            verticalSpeed = CGFloat((randomSource?.nextUniform())! * -4.0) + 2.0
+            
+            
+            // get a pseudo random number -262 to 262
+            let randomY:Int = (randomSource?.nextInt(upperBound: 524))! - 262
+            position.y = CGFloat(randomY)
+            
+            // get a pseudo random number 756 to 776
+            let randomX:Int = (randomSource?.nextInt(upperBound: 20))! + 756
+            position.x = CGFloat(randomX)
+        }
         
         isCollding = false
     }
@@ -60,7 +91,7 @@ class Cloud : GameObject
     
     func Move()
     {
-        position.x -= horizontalSpeed!
-        position.y -= verticalSpeed!
+            position.x -= horizontalSpeed!
+            position.y -= verticalSpeed!
     }
 }

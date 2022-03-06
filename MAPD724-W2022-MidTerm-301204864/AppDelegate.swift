@@ -1,10 +1,11 @@
-//
-//  AppDelegate.swift
-//  MAPD724-W2022-ICE1
-//
-//  Created by Tom Tsiliopoulos on 2022-01-12.
-//
-
+/*
+AppDelegate.swift
+MAPD724-W2022-MidTerm-301204864
+ 
+Author: Shrinal Patel (301204864)
+Date: 2022-03-06
+App Description: A mail pilot game app using Swift and SpriteKit which works in both portrait and landscape mode
+*/
 import UIKit
 
 @main
