@@ -10,7 +10,7 @@ class Plane : GameObject
             super.init(imageString: "plane", initialScale: 2.0)
         }
         else{
-            super.init(imageString: "plane", initialScale: 1.5)
+            super.init(imageString: "plane", initialScale: 1.0)
         }
         Start()
     }

@@ -6,7 +6,6 @@ class StartScene: SKScene
     // Istance Variables
     var ocean: Ocean?
     
-    
     override func didMove(to view: SKView)
     {
         screenWidth = frame.width

@@ -11,7 +11,7 @@ class Cloud : GameObject
             super.init(imageString: "cloud", initialScale: 1.0)
         }
         else{
-            super.init(imageString: "cloud", initialScale: 0.7)
+            super.init(imageString: "cloud", initialScale: 0.6)
         }
         Start()
     }
@@ -91,7 +91,7 @@ class Cloud : GameObject
     
     func Move()
     {
-            position.x -= horizontalSpeed!
-            position.y -= verticalSpeed!
+        position.x -= horizontalSpeed!
+        position.y -= verticalSpeed!
     }
 }

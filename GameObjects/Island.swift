@@ -11,7 +11,7 @@ class Island : GameObject
             super.init(imageString: "island", initialScale: 2.0)
         }
         else{
-            super.init(imageString: "island", initialScale: 1.5)
+            super.init(imageString: "island", initialScale: 1.0)
         }
         Start()
     }
